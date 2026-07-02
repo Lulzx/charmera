@@ -1,9 +1,19 @@
-# Charmera 📸
+<p align="center">
+  <img src="docs/icon.png" width="128" alt="Charmera icon">
+</p>
 
-A cute little macOS app (SwiftUI) that reads photos off a connected **Kodak
-Charmera** (or any camera card with a `DCIM` folder), shows them in a gallery,
-lets you multi-select, and applies nostalgic film filters to the whole batch in
-one go.
+<h1 align="center">Charmera 📸</h1>
+
+<p align="center">
+  A cute little macOS app (SwiftUI) that reads photos off a connected <b>Kodak
+  Charmera</b> (or any camera card with a <code>DCIM</code> folder), shows them
+  in a gallery, lets you multi-select, and applies nostalgic film filters to the
+  whole batch in one go.
+</p>
+
+<p align="center">
+  <img src="docs/screenshot.png" width="820" alt="Charmera gallery with nostalgic filters">
+</p>
 
 ## Features
 
@@ -59,4 +69,29 @@ Sources/Charmera/
     ExportBanner.swift   # floating progress / done banner
 ```
 
+```
+tools/
+  make_icon.swift        # regenerates the app icon (Core Graphics)
+  make_samples.swift      # generates sample photos for testing / screenshots
+docs/                     # icon + screenshot used in this README
+```
+
 `Package.swift` is included for building in Xcode via SwiftPM if you prefer.
+
+## Development
+
+Test the gallery, filters and export without the camera by pointing the app at
+any folder of JPEGs via an environment variable (run the binary directly, since
+`open` doesn't forward env vars):
+
+```sh
+CHARMERA_FOLDER=/path/to/photos ./Charmera.app/Contents/MacOS/Charmera
+```
+
+Regenerate the assets:
+
+```sh
+swiftc tools/make_icon.swift -o /tmp/mkicon && /tmp/mkicon /tmp/AppIcon.png
+swiftc tools/make_samples.swift -o /tmp/mksamples && /tmp/mksamples ~/Desktop/samples
+```
+

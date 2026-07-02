@@ -32,7 +32,14 @@ final class AppModel: ObservableObject {
     // MARK: Source detection
 
     func refresh() {
-        let folders = PhotoLibrary.detectCameraFolders()
+        var folders = PhotoLibrary.detectCameraFolders()
+        // Optional override for testing / screenshots: point at any image folder.
+        if let override = ProcessInfo.processInfo.environment["CHARMERA_FOLDER"] {
+            let url = URL(fileURLWithPath: override, isDirectory: true)
+            if FileManager.default.fileExists(atPath: url.path), !folders.contains(url) {
+                folders.insert(url, at: 0)
+            }
+        }
         cameraFolders = folders
         if let active = activeFolder, folders.contains(active) {
             load(folder: active)
