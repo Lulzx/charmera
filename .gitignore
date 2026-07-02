@@ -1,0 +1,21 @@
+# Build output
+build/
+Charmera.app/
+
+# SwiftPM
+.build/
+.swiftpm/
+Package.resolved
+
+# Xcode
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
